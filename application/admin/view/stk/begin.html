@@ -1,0 +1,126 @@
+{extend name="public/base" /}
+{block name="seo"}
+<title>{$title}</title>
+<meta name="keywords" content="{$keyword}">
+<meta name="description" content="{$desc}">
+</head>
+<body>
+{/block}
+{block name="content"}
+<section class="Hui-article-box">
+
+	<nav class="breadcrumb"><i class="Hui-iconfont">&#xe67f;</i> 首页
+		<span class="c-gray en">&gt;</span>
+		题库管理
+		<span class="c-gray en">&gt;</span>
+		<a href="{:url('index')}">录入试题_单题</a> </nav>
+	<form action="" method="post" class="form form-horizontal" id="form-member-add">
+
+		<div class="row cl">
+			<label class="form-label col-xs-4 col-sm-3">科目章节：</label>
+			<div class="formControls col-xs-8 col-sm-9">
+				<input type="text" class="input-text" style="width: 50%;" value="{$sub}  {$ch}[单选题]" placeholder=""  readonly="readonly"  id="username" name="username">
+			</div>
+		</div>
+
+		<div class="row cl">
+			<label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>题干：</label>
+			<div class="formControls col-xs-8 col-sm-9">
+				<input type="text" class="input-text" style="width: 50%;" value="" placeholder="" id="stem" name="stem">
+			</div>
+		</div>
+
+		<div class="row cl">
+			<label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>A选项：</label>
+			<div class="formControls col-xs-8 col-sm-9" ">
+				<input type="text" class="input-text" style="width: 50%;" value="" placeholder="" id="key_a" name="key_a">
+			</div>
+		</div>
+
+		<div class="row cl">
+			<label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>B选项：</label>
+			<div class="formControls col-xs-8 col-sm-9">
+				<input type="text" class="input-text" value="" style="width: 50%;" placeholder="" id="key_b" name="key_b">
+			</div>
+		</div>
+
+		<div class="row cl">
+			<label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>C选项：</label>
+			<div class="formControls col-xs-8 col-sm-9">
+				<input type="text" class="input-text" value="" style="width: 50%;" placeholder="" id="key_c" name="key_c">
+			</div>
+		</div>
+
+		<div class="row cl">
+			<label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>D选项：</label>
+			<div class="formControls col-xs-8 col-sm-9">
+				<input type="text" class="input-text" value="" style="width: 50%;" placeholder="" id="key_d" name="key_d">
+			</div>
+		</div>
+        <div class="row cl">
+			<label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>正确答案：</label>
+			<div class="formControls col-xs-8 col-sm-9 skin-minimal">
+				<div class="radio-box">
+					<input type="radio" id="ans" name="ans" value="1" checked>
+					<label for="sex-1">A</label>
+				</div>
+				<div class="radio-box">
+					<input type="radio" id="ans" name="ans" value="2">
+					<label for="sex-2">B</label>
+				</div>
+				<div class="radio-box">
+					<input type="radio" id="ans" name="ans" value="3">
+					<label for="sex-3">C</label>
+				</div>
+				<div class="radio-box">
+					<input type="radio" id="ans" name="ans" value="4">
+					<label for="sex-3">D</label>
+				</div>
+			</div>
+		</div>
+
+		
+		<div class="row cl">
+			<div class="col-xs-8 col-sm-9 col-xs-offset-4 col-sm-offset-3">
+				<input class="btn btn-primary radius" id="submit" type="submit" value="&nbsp;&nbsp;提交&nbsp;&nbsp;">
+			</div>
+		</div>
+	</form>
+</section>
+
+
+
+<!--请在下方写此页面业务相关的脚本-->
+<script type="text/javascript" src="__STATIC__/lib/jquery/1.9.1/jquery.min.js"></script>
+
+
+{/block}
+<!--/请在上方写此页面业务相关的脚本-->
+{block name="js"}
+<script>
+$(function () {
+	$("#submit").on('click',function(event){
+       $.ajax({
+       	type:"post",
+       	url:"{:url('submit')}",
+       	data:$("form").serialize(),
+       	dataType:'json',
+       	success:function(data){
+       		if(data.status==1){
+       			
+       			alert(data.message);
+       		}else{
+       			alert(data.message);
+       			 window.location.reload();
+       		}
+
+
+       	}
+       })
+	})
+})
+</script>
+
+{/block}
+</body>
+</html>

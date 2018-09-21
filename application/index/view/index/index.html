@@ -1,0 +1,31 @@
+﻿<!DOCTYPE html>
+<html lang="ch-zn">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+	<title>工时查询</title>
+	<link rel="stylesheet" type="text/css" href="__STATIC__/index/gs.css">
+</head>
+<body>
+	<div class="content">
+		<div class="tirtle">
+			<h2 class="tirtle-text"><i class="tirtle-fw"></i>DHU志愿者服务时长查询</h2>
+			<div class="kb"></div>
+				<li class="user-msg" id="user-name"><i class="user-msg-fw"></i>姓名：{$Think.session.name}</li>
+				<li class="user-msg" id="updata-time"><i class="user-msg-fw"></i>更新时间：{$update}</li>
+			
+		</div>
+		<table class="msg-tab" border="0" cellpadding="5px">
+			{volist name='timelist' id='vo'}
+			<tr>
+				<td class="msg-local">{$vo['gyxm']['name']}</td>
+				<td class="msg-number">{$vo.time}</td>
+			</tr>
+			{/volist}
+			
+		</table>
+	</div>
+	<p class="html-time">数据来源：{$name}</p>
+		<p class="html-btm">Copyright © 2018 东华大学易班技术开发部</p>
+</body>
+</html>

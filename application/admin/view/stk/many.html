@@ -1,0 +1,195 @@
+{extend name="public/base" /}
+{block name="seo"}
+<title>{$title}</title>
+<meta name="keywords" content="{$keyword}">
+<meta name="description" content="{$desc}">
+</head>
+<body>
+{/block}
+{block name="content"}
+<section class="Hui-article-box">
+
+	<nav class="breadcrumb"><i class="Hui-iconfont">&#xe67f;</i> 首页
+		<span class="c-gray en">&gt;</span>
+		题库管理
+		<span class="c-gray en">&gt;</span>
+		<a href="{:url('index')}">录入试题_单题</a> </nav>
+	<form action="" method="post" class="form form-horizontal" id="form-member-add">
+
+		<div class="row cl">
+			<label class="form-label col-xs-4 col-sm-3">科目章节：</label>
+			<div class="formControls col-xs-8 col-sm-9">
+				<input type="text" class="input-text" style="width: 50%;" value="{$sub}  {$ch}[多选题]" placeholder=""  readonly="readonly"  id="username" name="username">
+			</div>
+		</div>
+
+		<div class="row cl">
+			<label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>题干：</label>
+			<div class="formControls col-xs-8 col-sm-9">
+				<input type="text" class="input-text" style="width: 50%;" value="" placeholder="" id="stem" name="stem">
+			</div>
+		</div>
+
+		<div class="row cl">
+			<label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>A选项：</label>
+			<div class="formControls col-xs-8 col-sm-9" ">
+				<input type="text" class="input-text" style="width: 50%;" value="" placeholder="" id="key_a" name="key_a">
+			</div>
+		</div>
+
+		<div class="row cl">
+			<label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>B选项：</label>
+			<div class="formControls col-xs-8 col-sm-9">
+				<input type="text" class="input-text" value="" style="width: 50%;" placeholder="" id="key_b" name="key_b">
+			</div>
+		</div>
+
+		<div class="row cl">
+			<label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>C选项：</label>
+			<div class="formControls col-xs-8 col-sm-9">
+				<input type="text" class="input-text" value="" style="width: 50%;" placeholder="" id="key_c" name="key_c">
+			</div>
+		</div>
+
+		<div class="row cl">
+			<label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>D选项：</label>
+			<div class="formControls col-xs-8 col-sm-9">
+				<input type="text" class="input-text" value="" style="width: 50%;" placeholder="" id="key_d" name="key_d">
+			</div>
+		</div>
+		<div class="row cl">
+			<label class="form-label col-xs-4 col-sm-3">E选项：</label>
+			<div class="formControls col-xs-8 col-sm-9">
+				<input type="text" class="input-text" value="" style="width: 50%;" placeholder="" id="key_e" name="key_e">
+			</div>
+		</div>
+		<div class="row cl">
+			<label class="form-label col-xs-4 col-sm-3">F选项：</label>
+			<div class="formControls col-xs-8 col-sm-9">
+				<input type="text" class="input-text" value="" style="width: 50%;" placeholder="" id="key_f" name="key_f">
+			</div>
+		</div>
+        <div class="row cl">
+			<label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>正确答案：</label>
+			<div class="formControls col-xs-8 col-sm-9 skin-minimal">
+				<div class="radio-box">
+					<input type="checkbox" id="ans1" name="ans1"  >
+					<label for="sex-1">A</label>
+				</div>
+				<div class="radio-box">
+					<input type="checkbox" id="ans2" name="ans2" >
+					<label for="sex-2">B</label>
+				</div>
+				<div class="radio-box">
+					<input type="checkbox" id="ans3" name="ans3" >
+					<label for="sex-3">C</label>
+				</div>
+				<div class="radio-box">
+					<input type="checkbox" id="ans4" name="ans4" >
+					<label for="sex-3">D</label>
+				</div>
+				<div class="radio-box">
+					<input type="checkbox" id="ans5" name="ans5" >
+					<label for="sex-3">E</label>
+				</div>
+				<div class="radio-box">
+					<input type="checkbox" id="ans6" name="ans6" >
+					<label for="sex-3">F</label>
+				</div>
+			</div>
+		</div>
+
+		
+		<div class="row cl">
+			<div class="col-xs-8 col-sm-9 col-xs-offset-4 col-sm-offset-3">
+				<input class="btn btn-primary radius" id="submit" type="submit" value="&nbsp;&nbsp;提交&nbsp;&nbsp;">
+			</div>
+		</div>
+	</form>
+</section>
+
+
+
+<!--请在下方写此页面业务相关的脚本-->
+<script type="text/javascript" src="__STATIC__/lib/jquery/1.9.1/jquery.min.js"></script>
+
+
+{/block}
+<!--/请在上方写此页面业务相关的脚本-->
+{block name="js"}
+<script>
+$(function () {
+
+	$("#submit").on('click',function(event){
+		if($("#ans1").is(':checked'))
+		{
+			var ans1=1;
+		}else{
+			var ans1=0;
+		}
+		if($("#ans2").is(':checked'))
+		{
+			var ans2=1;
+		}else{
+			var ans2=0;
+		}
+		if($("#ans3").is(':checked'))
+		{
+			var ans3=1;
+		}else{
+			var ans3=0;
+		}
+		if($("#ans4").is(':checked'))
+		{
+			var ans4=1;
+		}else{
+			var ans4=0;
+		}
+		if($("#ans5").is(':checked'))
+		{
+			var ans5=1;
+		}else{
+			var ans5=0;
+		}
+		if($("#ans6").is(':checked'))
+		{
+			var ans6=1;
+		}else{
+			var ans6=0;
+		}
+		var form_data = {
+				stem: $("#stem").val(),
+				key_a: $("#key_a").val(),
+                key_b: $("#key_b").val(),
+                key_c: $("#key_c").val(),
+                key_d: $("#key_d").val(),
+                key_e: $("#key_e").val(),
+                key_f: $("#key_f").val(),
+                ans1,ans2,ans3,ans4,ans5,ans6,
+              
+			};
+
+       $.ajax({
+       	type:"post",
+       	url:"{:url('manysub')}",
+       	data:form_data,
+       	dataType:'json',
+       	success:function(data){
+       		if(data.status==1){
+       			
+       			alert(data.message);
+       		}else{
+       			alert(data.message);
+       			 window.location.reload();
+       		}
+
+
+       	}
+       })
+	})
+})
+</script>
+
+{/block}
+</body>
+</html>

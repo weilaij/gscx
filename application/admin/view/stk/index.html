@@ -1,0 +1,193 @@
+{extend name="public/base" /}
+{block name="seo"}
+<title>{$title}</title>
+<meta name="keywords" content="{$keyword}">
+<meta name="description" content="{$desc}">
+</head>
+<body>
+{/block}
+{block name="content"}
+<section class="Hui-article-box">
+
+	<nav class="breadcrumb"><i class="Hui-iconfont">&#xe67f;</i> 首页
+		<span class="c-gray en">&gt;</span>
+		题库管理
+		<span class="c-gray en">&gt;</span>
+		录入试题_单题 </nav>
+	<ul class="tab-sorm">
+		<li class="tab-list sorm-single mulu-sel" data-tab="single"><a href="#">单选试题录入</a></li>
+		<li class="tab-list sorm-multiple"><a href="#" data-tab="multiple">多选试题录入</a></li>
+	</ul>
+	<div id="tab-con-single" class="tab-content tab-con-sel">
+	<form action="" method="post" class="form form-horizontal" id="form-member-add">
+		
+		<div class="row cl">
+			<label class="form-label col-xs-4 col-sm-3">选择科目：</label>
+			<div class="formControls col-xs-8 col-sm-9"> <span class="select-box" style="width: 50%;">
+				<select class="select" size="1" name="sub" id="sub"  onChange = "getCh1(this.options[this.selectedIndex].value)">
+					<option value="" selected>请选择科目</option>
+					<option value="1">近代史</option>
+					<option value="2">思修</option>
+					<option value="3">毛概上</option>
+					<option value="4">毛概下</option>
+					<option value="5">马克思</option>
+				</select>
+				</span> </div>
+		</div>
+		
+		<div class="row cl">
+			<label class="form-label col-xs-4 col-sm-3">章节：</label>
+			<div class="formControls col-xs-8 col-sm-9"> <span class="select-box" style="width: 50%;">
+				<select class="select" size="1" name="ch" id="ch1">
+				
+				</select>
+				</span> </div>
+		</div>
+		<div class="row cl">
+			<div class="col-xs-8 col-sm-9 col-xs-offset-4 col-sm-offset-3">
+				<input class="btn btn-primary radius" id="submit" type="submit" value="&nbsp;&nbsp;提交&nbsp;&nbsp;">
+			</div>
+		</div>
+	</form>
+</div>
+	<div id="tab-con-multiple" class="tab-content">
+	<form action="" method="post" class="form form-horizontal" id="form-member-add2">
+		
+		<div class="row cl">
+			<label class="form-label col-xs-4 col-sm-3">选择科目：</label>
+			<div class="formControls col-xs-8 col-sm-9"> <span class="select-box" style="width: 50%;">
+				<select class="select" size="1" name="sub" id="sub" onChange = "getCh2(this.options[this.selectedIndex].value)">
+					<option value="" selected>请选择科目</option>
+					<option value="1">近代史</option>
+					<option value="2">思修</option>
+					<option value="3">毛概上</option>
+					<option value="4">毛概下</option>
+					<option value="5">马克思</option>
+				</select>
+				</span> </div>
+		</div>
+		
+		<div class="row cl">
+			<label class="form-label col-xs-4 col-sm-3">章节：</label>
+			<div class="formControls col-xs-8 col-sm-9"> <span class="select-box" style="width: 50%;">
+				<select class="select" size="1" name="ch" id="ch2">
+					  
+				</select>
+				</span> </div>
+		</div>
+		<div class="row cl">
+			<div class="col-xs-8 col-sm-9 col-xs-offset-4 col-sm-offset-3">
+				<input class="btn btn-primary radius" id="submit2" type="submit" value="&nbsp;&nbsp;提交&nbsp;&nbsp;">
+			</div>
+		</div>
+	</form>
+</div>
+
+</section>
+
+
+
+<!--请在下方写此页面业务相关的脚本-->
+<!-- <script type="text/javascript" src="lib/My97DatePicker/4.8/WdatePicker.js"></script> -->
+<script type="text/javascript" src="__STATIC__/lib/jquery/1.9.1/jquery.min.js"></script>
+<!-- <script type="text/javascript" src="lib/jquery.validation/1.14.0/jquery.validate.js"></script> 
+<script type="text/javascript" src="lib/jquery.validation/1.14.0/validate-methods.js"></script> 
+<script type="text/javascript" src="lib/jquery.validation/1.14.0/messages_zh.js"></script>  -->
+{/block}
+<!--/请在上方写此页面业务相关的脚本-->
+{block name="js"}
+<script>
+$(function () {
+	$("#submit").on('click',function(event){
+       $.ajax({
+       	type:"post",
+       	url:"{:url('choose')}",
+       	data:$("#form-member-add").serialize(),
+       	dataType:'json',
+       	success:function(data){
+       		if(data.status==1){
+       			window.location.href="{:url('begin')}";
+       		}else{
+       			alert(data.message);
+       		}
+
+
+       	}
+       })
+	})
+
+		$("#submit2").on('click',function(event){
+       $.ajax({
+       	type:"post",
+       	url:"{:url('choose')}",
+       	data:$("#form-member-add2").serialize(),
+       	dataType:'json',
+       	success:function(data){
+       		if(data.status==1){
+       			window.location.href="{:url('many')}";
+       		}else{
+       			alert(data.message);
+       		}
+
+
+       	}
+       })
+	})
+})
+function getCh1(sub)  
+{  
+    //当前 所选择 的 省  
+    var sub = sub;  
+    var j;
+    $.ajax({
+        url: '{:url('muludata')}',
+        type: 'POST',
+        dataType: 'json',
+        data: {sub: sub },
+        success: function(data){
+            /*return data;*/
+            var dataq = jQuery.parseJSON(data);
+              var obj=document.getElementById('ch1'); 
+                 obj.options.length=0;
+               for(j=0;j<dataq.length;j++)  
+            {  
+               obj.options.add(new Option(dataq[j]['title']+dataq[j]['name'],dataq[j]['id'])); //这个兼容IE与firefox  
+            }   
+        },
+        error: function(){
+            alert('获取题目！');
+        }
+    });        
+     
+}  
+function getCh2(sub)  
+{  
+    //当前 所选择 的 省  
+    var sub = sub;  
+    var j;
+    $.ajax({
+        url: '{:url('muludata')}',
+        type: 'POST',
+        dataType: 'json',
+        data: {sub: sub },
+        success: function(data){
+            /*return data;*/
+            var dataq = jQuery.parseJSON(data);
+              var obj=document.getElementById('ch2');
+               obj.options.length=0; 
+               for(j=0;j<dataq.length;j++)  
+            {  
+               obj.options.add(new Option(dataq[j]['title']+dataq[j]['name'],dataq[j]['ch'])); //这个兼容IE与firefox  
+            }   
+        },
+        error: function(){
+            alert('获取题目！');
+        }
+    });        
+     
+}  
+</script>
+
+{/block}
+</body>
+</html>

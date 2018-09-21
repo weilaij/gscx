@@ -1,0 +1,77 @@
+{extend name="public/base" /}
+{block name="seo"}
+<title>{$title}</title>
+<meta name="keywords" content="{$keyword}">
+<meta name="description" content="{$desc}">
+</head>
+<body>
+{/block}
+{block name="content"}
+<section class="Hui-article-box">
+	<nav class="breadcrumb"><i class="Hui-iconfont">&#xe67f;</i> 首页
+		<span class="c-gray en">&gt;</span>
+		统计管理
+		<span class="c-gray en">&gt;</span>
+		学生答题统计
+		
+	</nav>
+	<div class="Hui-article">
+		<article class="cl pd-20">
+			<span class="r">共有数据：<strong>{$count}</strong> 条</span>
+			
+			<div class="mt-20">
+				<table class="table table-border table-bordered table-bg table-hover table-sort">
+					<thead>
+						<tr class="text-c">
+							<th width="10">id</th>
+							<th width="20">学号</th>
+							<th width="50">姓名</th>
+							<th width="50">答题总数</th>
+							<th width="50">答对题目数</th>
+							<!-- <th width="30">正确率</th> -->
+							<th width="90">答题科目数</th>
+						</tr>
+					</thead>
+					<tbody>
+						{volist name='ustaList' id='vo'}
+						<tr class="text-c">
+							
+							<td>{$vo.id}</td>
+							<td>{$vo.student_id}</td>
+							<td>{$vo.name}</td>
+							<td>{$vo.user_sum}</td>
+							<td>{$vo.user_wrong}</td>
+							<td>{$vo.km_sum}</td>
+							
+							
+						</tr>
+						{/volist}
+					</tbody>
+				</table>
+			</div>
+			<div class="container">
+				<div class="row">
+					<div class="col-md-5"></div>
+					<div class="col-md-5">{$ustaList->render()}</div></div>
+					<div class="col-md-5"></div>
+				</div>
+
+		</article>
+	</div>
+</section>
+
+
+<!--请在下方写此页面业务相关的脚本-->
+
+
+</script> 
+{/block}
+<!--/请在上方写此页面业务相关的脚本-->
+{block name="js"}
+<script>
+
+</script>
+
+{/block}
+</body>
+</html>

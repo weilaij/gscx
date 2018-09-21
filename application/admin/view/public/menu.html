@@ -1,0 +1,98 @@
+﻿<div class="left-nav">
+      <div id="side-nav">
+        <ul id="nav">
+            <li>
+                <a href="javascript:;">
+                    <i class="iconfont">&#xe811;</i>
+                    <cite>项目管理</cite>
+                    <i class="iconfont nav_right">&#xe697;</i>
+                </a>
+                <ul class="sub-menu">
+                    {eq name="$Think.session.user_info.name" value="admin"}
+                    <li>
+                        <a _href="{:url('km/colleglist')}">
+                            <i class="iconfont">&#xe82a;</i>
+                            <cite>服务队管理</cite>
+                            
+                        </a>
+                    </li >
+                    {/eq}
+                    
+                    <li>
+                        <a _href="{:url('km/gyxmlist')}">
+                            <i class="iconfont">&#xe70b;</i>
+                            <cite>公益项目管理</cite>
+                            
+                        </a>
+                    </li>
+                </ul>
+            </li>
+          <!--   <li>
+                <a href="javascript:;">
+                    <i class="iconfont">&#xe723;</i>
+                    <cite>反馈管理</cite>
+                    <i class="iconfont nav_right">&#xe697;</i>
+                </a>
+                <ul class="sub-menu">
+                    <li>
+                        <a _href="order-list.html">
+                            <i class="iconfont">&#xe6a7;</i>
+                            <cite>已处理</cite>
+                        </a>
+                    </li >
+                </ul>
+                 <ul class="sub-menu">
+                    <li>
+                        <a _href="order-list.html">
+                            <i class="iconfont">&#xe6a7;</i>
+                            <cite>未处理</cite>
+                        </a>
+                    </li >
+                </ul>
+            </li> -->
+{neq name="$Think.session.user_info.name" value="admin"}
+            <li>
+                <a href="javascript:;">
+                    <i class="iconfont">&#xe723;</i>
+                    <cite>工时管理</cite>
+                    <i class="iconfont nav_right">&#xe697;</i>
+                </a>
+                <ul class="sub-menu">
+                    <li>
+                        <a _href="{:url('exam/index')}">
+                            <i class="iconfont">&#xe6a7;</i>
+                            <cite>上传工时</cite>
+                        </a>
+                    </li >
+                </ul>
+
+                <ul class="sub-menu">
+                    <li>
+                        <a _href="{:url('exam/output')}">
+                            <i class="iconfont">&#xe6a7;</i>
+                            <cite>查看录入</cite>
+                        </a>
+                    </li >
+                </ul>
+
+            </li>
+{/neq}
+            
+            <li>
+                <a href="javascript:;">
+                    <i class="iconfont">&#xe726;</i>
+                    <cite>管理员管理</cite>
+                    <i class="iconfont nav_right">&#xe697;</i>
+                </a>
+                <ul class="sub-menu">
+                    <li>
+                        <a _href="{:url('user/adminlist')}">
+                            <i class="iconfont">&#xe6a7;</i>
+                            <cite>管理员列表</cite>
+                        </a>
+                    </li >
+                </ul>
+            </li>
+        </ul>
+      </div>
+    </div>
